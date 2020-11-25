@@ -4,7 +4,7 @@ Route: /admin <br>
 AdminID - admin@admin.com <br>
 Password - password<br>
 
-Resume CMS has errors.
+
 
 
 
