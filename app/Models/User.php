@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Permissions\HasPermissionsTrait;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -56,4 +57,10 @@ class User extends Authenticatable
     public function hasRole($role){
         return null != $this->roles()->where('name', $role)->first();
     }
-}
+
+    // use HasPermissionsTrait; //Import The Trait
+    }
+    
+    
+
+

@@ -15,16 +15,14 @@ class CreateTblDetailsTable extends Migration
     {
         Schema::create('tbl_details', function (Blueprint $table) {
             $table->increments('did');
-            $table->string('title');
-            $table->string('phone');
-            $table->string('email'); 
+            $table->string('dtitle');
+            $table->string('phone');            
             $table->string('fblink'); 
             $table->string('twitterlink');
             $table->string('instalink');   
             $table->string('linkedinlink');   
-            $table->string('ytlink'); 
-            $table->string('footer');                         
-            $table->string('status');
+            $table->string('ytlink');                 
+            
             $table->timestamps();
         });
     }

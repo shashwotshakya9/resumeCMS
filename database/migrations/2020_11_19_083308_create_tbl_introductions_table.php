@@ -18,6 +18,10 @@ class CreateTblIntroductionsTable extends Migration
             $table->string('intro');
             $table->string('email');
             $table->string('image')->nullable();
+            $table->string('fullname');
+            $table->string('dob');
+            $table->string('website');
+            
             $table->timestamps();
         });
     }

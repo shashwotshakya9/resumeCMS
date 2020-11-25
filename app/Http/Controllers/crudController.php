@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\tbl_introduction;
 use App\Models\tbl_aboutme;
+use App\Models\tbl_faq;
+use App\Models\tbl_detail;
+use App\Models\tbl_reviews;
+
 use Illuminate\Http\Request;
 
 use DB;
@@ -11,93 +15,51 @@ use Session;
 
 class crudController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-        
+    public function insertAboutme(Request $request){
+        $aboutme= new tbl_aboutme;
+        $aboutme->atitle=request('atitle');
+        $aboutme->adescription=request('adescription');
+        $aboutme->acontenttitle_one=request('acontenttitle_one');
+        $aboutme->acontentdescription_one=request('acontentdescription_one');
+        $aboutme->acontenttitle_two=request('acontenttitle_two');
+        $aboutme->acontentdescription_two=request('acontentdescription_two');
+        $aboutme->acontenttitle_three=request('acontenttitle_three');
+        $aboutme->acontentdescription_three=request('acontentdescription_three');
+        if ($request->hasfile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename=time() . '.' . $extension;
+            $file->move('uploads/aboutme/', $filename);
+            $aboutme->image=$filename;
+        } else{
+            return $request;
+            $aboutme->image= '';
+        }
+            $aboutme->save();
+            Session::flash('message','Data inserted successfully!!!');
+        return redirect()->back();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-        
-      
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        // $data = DB::table('tbl_introduction')->get();
-        // return view ('backend.index',['data'=>$data]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function insertData(Request $request){
-        $data = $request->all();
-        print_r($data);
+    public function show(Request $request){    
         $intro= new tbl_introduction;
         $intro->intro = request('intro');
         $intro->email = request('email');
+        $intro->fullname = request('fullname');
+        $intro->dob = request('dob');
+        $intro->website = request('website');
+        return view('backend.introduction',[
+            'intro'=>$intro, 'aboutme'=>$aboutme, 'faq'=>$faq, 'detail'=>$detail, 'review'=>$review,
+        ]);
+    }
+
+
+    public function insertIntro(Request $request){
+        $intro= new tbl_introduction;
+        $intro->intro = request('intro');
+        $intro->email = request('email');
+        $intro->fullname = request('fullname');
+        $intro->dob = request('dob');
+        $intro->website = request('website');
+
         if ($request->hasfile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
@@ -109,41 +71,60 @@ class crudController extends Controller
             $intro->image= '';
         } 
         $intro->save();
-        
-        // $aboutme= new tbl_aboutme;
-        // $aboutme->aboutme=request('atitle');
-        // $aboutme->aboutme=request('adescription');
-        // $aboutme->aboutme=request('acontenttitle');
-        // $aboutme->aboutme=request('acontentdescription');
-        // if ($request->hasfile('aimage')){
-        //     $file = $request->file('aimage');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $filename=time() . '.' . $extension;
-        //     $file->move('uploads/', $filename);
-        //     $aboutme->aimage=$filename;
-        // } else{
-        //     return $request;
-        //     $aboutme->aimage= '';
-        // }
-        //     $aboutme->save();        
-    	
-
-            Session::flash('message','Data inserted successfully!!!');
-            return redirect()->back();
+        Session::flash('message','Data inserted successfully!!!');
+        return redirect()->back();
     }
 
-    // public function insertAboutme(Request $request){
-   
-        
-        
-        
-    // }
-
-   
-    // private function upload($image){
-    //     $name = $image->getClientOriginalName();
-    //     $newName = date('ymdgis').$name;
-    //     $image->move(public_path().'/Uploads',$newName);
-    //     return $newName;
-    //   }
+    public function insertDetails(Request $request){
+        $detail= new tbl_detail;
+        $detail->dtitle=request('dtitle');  
+        $detail->phone=request('phone');       
+        $detail->fblink=request('fblink');
+        $detail->twitterlink=request('twitterlink');
+        $detail->instalink=request('instalink');
+        $detail->linkedinlink=request('linkedinlink');       
+        $detail->ytlink=request('ytlink');
+        $detail->save();
+        Session::flash('message','Data inserted successfully!!!');
+        return redirect()->back();
     }
+
+    public function insertReviews(Request $request){
+        $review= new tbl_reviews;
+        $review->rname=request('rname');
+        $review->rposition=request('rposition');
+        $review->rreview=request('rreview');       
+        if ($request->hasfile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename=time() . '.' . $extension;
+            $file->move('uploads/rev/', $filename);
+            $review->image=$filename;
+        } else{
+            return $request;
+            $review->image= '';
+        } 
+        $review->save();
+        Session::flash('message','Data inserted successfully!!!');
+        return redirect()->back();
+    }
+
+    public function insertFaq(Request $request){
+        $faq= new tbl_faq;
+        $faq->question_one=request('question_one');        
+        $faq->question_two=request('question_two');
+        $faq->question_three=request('question_three');
+        $faq->question_four=request('question_four');
+        $faq->question_five=request('question_five');
+        $faq->answer_one=request('answer_one');
+        $faq->answer_two=request('answer_two');
+        $faq->answer_three=request('answer_three');
+        $faq->answer_four=request('answer_four');
+        $faq->answer_five=request('answer_five');
+        $faq->save();
+        Session::flash('message','Data inserted successfully!!!');
+        return redirect()->back();
+    }
+
+
+}

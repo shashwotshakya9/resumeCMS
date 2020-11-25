@@ -12,6 +12,7 @@ class adminController extends Controller
 
     }
     public function admin(){
+
         return view('backend.index');        
     }   
   

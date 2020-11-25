@@ -21,10 +21,30 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a>
+                          <a class="nav-link" href='{{ route('home')}}'>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                              Dashboard
+                          </a>
+                          <a class="nav-link" href='{{ route('introduction')}}'>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Introduction
+                          </a>
+                          <a class="nav-link" href='{{ route('aboutme')}}'>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            About Me
+                          </a>
+                          <a class="nav-link" href='{{ route('faq')}}'>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            FAQ
+                          </a>
+                          <a class="nav-link" href='{{ route('details')}}'>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Details
+                          </a>
+                          <a class="nav-link" href='{{ route('reviews')}}'>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Reviews
+                          </a>
                             
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 
@@ -57,99 +77,18 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Admin Panel
+                                Dashboard
+                            </div>                            
+                            <div class="card-body">          
+                              <main class="py-4">
+                                @yield('introcontent')
+                                @yield('aboutmecontent')
+                                @yield('faqcontent')
+                                @yield('detailscontent')  
+                                @yield('reviewscontent')                               
+                              </main>
                             </div>
-                            
-                            <div class="card-body">
-
-                              @if(Session::has('message'))
-                              <div class="alert alert-success alert-dismissable">
-                                {{ Session::get('message') }}
-                              </div>
-                              @endif
-{{-- Introduction Form Portion --}}
-
-                                <div class="table-responsive">
-                                   <h2> For Introduction Portion</h2>
-                                  <form method="post" action="{{url('addSettings')}}" enctype="multipart/form-data">
-                                    @csrf                                                                                        
-                                    <div class="form-group">
-                                      <label>Your Image</label>
-                                      <input id="image" type="file" name="image" class="btn-success">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Your Introduction</label>
-                                      <input id="intro" type="text" name="intro" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Email</label>
-                                      <input id="email" type="text" name="email" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <button class="btn btn-success">Add</button>
-                                    </div>
-                                  </form>
-                                    
-{{-- ABOUT ME Portion --}}
-                                  {{-- <h2> For About Me Portion</h2>   
-                                  <div class="form-group">
-                                    <label>Add Image</label>
-                                    <input id="aimage" type="file" name="aimage" class="btn-success">
-                                  </div>
-                                    <div class="form-group">
-                                      <label>Title</label>
-                                      <input id="atitle" type="text" name="atitle" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Description</label>
-                                      <input id="adescription" type="text" name="adescription" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Content Title</label>
-                                      <input id="acontenttitle" type="text" name="acontenttitle" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Content Description</label>
-                                      <input id="acontentdescription" type="longtext" name="adescription" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <button class="btn btn-success">Add</button>
-                                    </div>
-                                  </form> --}}
-{{-- 
-                                  <h2> For Reviews Portion</h2>
-                                  <form method="post" action="{{url('addSettings')}}" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                      <label>Your Image</label>
-                                      <input type="file" name="image" class="btn-success">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Your Introduction</label>
-                                      <input type="text" name="intro" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Email</label>
-                                      <input type="text" name="intro" class="form-control">
-                                    </div>
-                                  </form>
-
-                                  <h2> For Contact Portion</h2>
-                                  <form method="post" action="{{url('addSettings')}}" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                      <label>Your Image</label>
-                                      <input type="file" name="image" class="btn-success">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Your Introduction</label>
-                                      <input type="text" name="intro" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Email</label>
-                                      <input type="text" name="intro" class="form-control">
-                                    </div>
-                                  </form> --}} 
-                                </div>
-                            </div>
+                          </div>
                         </div>
                     </div>                    
                 </main>
@@ -164,7 +103,6 @@
                             </div>
                         </div>
                     </div>
-                    
                 </footer>
             </div>
         </div>

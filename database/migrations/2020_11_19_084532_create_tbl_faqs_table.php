@@ -14,12 +14,17 @@ class CreateTblFaqsTable extends Migration
     public function up()
     {
         Schema::create('tbl_faqs', function (Blueprint $table) {
-            $table->increments('fid');
-            $table->string('title');
-            $table->longtext('question');
-            $table->longtext('answer'); 
-            $table->longtext('footer');                  
-            $table->string('status');
+            $table->increments('fid');            
+            $table->longtext('question_one');
+            $table->longtext('answer_one');
+            $table->longtext('question_two');
+            $table->longtext('answer_two');
+            $table->longtext('question_three');
+            $table->longtext('answer_three');
+            $table->longtext('question_four');
+            $table->longtext('answer_four');
+            $table->longtext('question_five');
+            $table->longtext('answer_five');            
             $table->timestamps();
         });
     }

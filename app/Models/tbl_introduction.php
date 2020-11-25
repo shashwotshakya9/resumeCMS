@@ -10,9 +10,9 @@ class tbl_introduction extends Model
     use HasFactory;
 
     protected $table = 'tbl_introductions';
-    // protected $primaryKey = 'iid';
+    protected $primaryKey = 'iid';
     protected $fillable =[
-        'intro','email','image'
+        'intro','email','image','fullname','dob','website'
     ];
 
     

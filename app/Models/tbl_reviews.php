@@ -11,4 +11,12 @@ class tbl_reviews extends Model
 
     protected $table = 'tbl_reviews';
     protected $primaryKey = 'rid';
+    protected $fillable =[
+        'rname',
+        'rposition',
+        'rreview',
+        'image',
+        
+    ];
 }
+

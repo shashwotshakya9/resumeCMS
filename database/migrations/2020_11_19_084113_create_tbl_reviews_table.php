@@ -15,12 +15,10 @@ class CreateTblReviewsTable extends Migration
     {
         Schema::create('tbl_reviews', function (Blueprint $table) {
             $table->increments('rid');
-            $table->string('title');
-            $table->string('name');
-            $table->string('position');
-            $table->longtext('review');
-            $table->string('image');
-            $table->string('status');
+            $table->string('rname');
+            $table->string('rposition');
+            $table->longtext('rreview');
+            $table->string('image')->nullable;           
             $table->timestamps();
         });
     }

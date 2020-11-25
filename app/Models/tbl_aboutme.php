@@ -11,7 +11,16 @@ class tbl_aboutme extends Model
     protected $table = 'tbl_aboutmes';
     // protected $primaryKey = 'aid';
     protected $fillable =[
-        'atitle','adescription','aimage','acontenttitle','acontentdescription'
+        'atitle',
+        'adescription',
+        'image',
+        'acontenttitle_one',
+        'acontentdescription_one',
+        'acontenttitle_two',
+        'acontentdescription_two',
+        'acontenttitle_three',
+        'acontentdescription_three',
+        
     ];
 
 }

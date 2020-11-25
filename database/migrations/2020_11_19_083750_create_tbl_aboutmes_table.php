@@ -17,9 +17,13 @@ class CreateTblAboutmesTable extends Migration
             $table->increments('aid');
             $table->string('atitle');
             $table->longtext('adescription');
-            $table->string('aimage')->nullable();
-            $table->longtext('acontentdescription');
-            $table->string('acontenttitle');            
+            $table->string('image')->nullable();
+            $table->longtext('acontentdescription_one');
+            $table->string('acontenttitle_one');
+            $table->longtext('acontentdescription_two');
+            $table->string('acontenttitle_two'); 
+            $table->longtext('acontentdescription_three');
+            $table->string('acontenttitle_three');             
             $table->timestamps();
         });
     }

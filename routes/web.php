@@ -13,14 +13,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('frontend.index');
-// });
+
 
 Route::get('/', [App\Http\Controllers\frontController::class, 'index']);
 Route::get('/admin', [App\Http\Controllers\adminController::class, 'admin']);
-Route::post('addSettings', [App\Http\Controllers\crudController::class, 'insertData']);
-// Route::post('addSettings', [App\Http\Controllers\crudController::class, 'insertAboutme']);
+Route::post('addIntro', [App\Http\Controllers\crudController::class, 'insertIntro']);
+Route::post('addAboutme', [App\Http\Controllers\crudController::class, 'insertAboutme']);
+Route::post('addFaq', [App\Http\Controllers\crudController::class, 'insertFaq']);
+Route::post('addDetails', [App\Http\Controllers\crudController::class, 'insertDetails']);
+Route::post('addReviews', [App\Http\Controllers\crudController::class, 'insertReviews']);
+// Route::get('introduction', [App\Http\Controllers\crudController::class, 'showIntro']);
+Route::get('introduction',[App\Http\Controllers\crudController::class, 'show']);
+
+
+Route::get('introduction', function()
+{
+    return view('backend.introduction');
+})->name('introduction');;
+
+Route::get('aboutme', function()
+{
+    return view('backend.aboutme');
+})->name('aboutme');;
+
+Route::get('faq', function()
+{
+    return view('backend.faq');
+})->name('faq');;
+
+Route::get('details', function()
+{
+    return view('backend.details');
+})->name('details');;
+
+Route::get('reviews', function()
+{
+    return view('backend.reviews');
+})->name('reviews');;
 
 Auth::routes();
 
